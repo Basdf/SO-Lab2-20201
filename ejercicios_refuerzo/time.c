@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
         wait(NULL);
         gettimeofday(&current_time, NULL);
         int timeF=current_time.tv_usec;
-        printf("Elapsed time: %d",timeF-timeI);
+        printf("Elapsed time: %d\n",timeF-timeI);
         return 0;
     }
 }
