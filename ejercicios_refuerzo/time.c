@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     }
     
     if (pid == 0) { /* child process */
-        execv(argv2[0],argv2);
+        execvp(argv2[0],argv2);
         
         printf("%s\n",argv[0]);
         
