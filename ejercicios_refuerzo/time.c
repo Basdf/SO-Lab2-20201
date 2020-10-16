@@ -4,6 +4,7 @@
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <stdlib.h>
 
 int value = 5;
 int main(int argc, char *argv[]) {
@@ -29,10 +30,10 @@ int main(int argc, char *argv[]) {
     if (pid == 0) { /* child process */
         strcat(path,arg_vector[0]);
         //arg_vector[0]=path;
-        execvp(arg_vector[0],argv2);
+        execvp(arg_vector[0],arg_vector);
         perror("execvp");
         for (int i = 0; i < argc-1; i++){
-            printf("%s ",argv2[i]);
+            printf("%s ",arg_vector[i]);
         }
     }
     else if (pid > 0) { /* parent process */
