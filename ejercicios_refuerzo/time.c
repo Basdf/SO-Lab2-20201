@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <sys/wait.h>
+#include <string.h>
 
 int value = 5;
 int main(int argc, char *argv[]) {
@@ -13,13 +14,15 @@ int main(int argc, char *argv[]) {
     int timeI=current_time.tv_usec;
     pid = fork();
     char *argv2[argc-1];
-
+    char path[50];
+    strcpy(path,"/bin/");
     for (int i = 1; i < argc; i++){
         argv2[i-1]=argv[i];
     }
     
     if (pid == 0) { /* child process */
-        execv("/bin/"+argv2[0],argv2);
+        strcat(path,argv2[0]);
+        execv(path,argv2);
         for (int i = 0; i < argc-1; i++){
             printf("%s ",argv2[i]);
         }
