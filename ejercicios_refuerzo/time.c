@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     gettimeofday(&current_time, NULL);
     int timeI=current_time.tv_usec;
     char **arg_vector = NULL;
-    arg_vector = (char **)malloc(sizeof(char **) *(argc));
+    arg_vector = (char **)malloc(sizeof(char **) *(argc+1));
     if (arg_vector == NULL) {
         perror("malloc");
         exit(EXIT_FAILURE);
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++){
         arg_vector[i-1]=argv[i];
     }
-    arg_vector[argc]=NULL;
+    arg_vector[argc+1]=NULL;
     
     if (pid == 0) { /* child process */
         strcat(path,arg_vector[0]);
