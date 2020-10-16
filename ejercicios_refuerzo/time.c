@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++){
         arg_vector[i-1]=argv[i];
     }
-    arg_vector[argc]=NULL;
+    //arg_vector[argc]=NULL;
     
     if (pid == 0) { /* child process */
         strcat(path,arg_vector[0]);
