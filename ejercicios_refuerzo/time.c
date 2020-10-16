@@ -22,7 +22,8 @@ int main(int argc, char *argv[]) {
     
     if (pid == 0) { /* child process */
         strcat(path,argv2[0]);
-        execv(path,argv2);
+        execv("/bin/ls",argv2);
+        perror("execv");
         for (int i = 0; i < argc-1; i++){
             printf("%s ",argv2[i]);
         }
