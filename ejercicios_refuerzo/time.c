@@ -29,12 +29,9 @@ int main(int argc, char *argv[]) {
     
     if (pid == 0) { /* child process */
         strcat(path,arg_vector[0]);
-        //arg_vector[0]=path;
-        execvp(arg_vector[0],arg_vector);
-        perror("execvp");
-        for (int i = 0; i < argc-1; i++){
-            printf("%s ",arg_vector[i]);
-        }
+        arg_vector[0]=path;
+        execv(arg_vector[0],arg_vector);
+        perror("execv");
     }
     else if (pid > 0) { /* parent process */
         wait(NULL);
