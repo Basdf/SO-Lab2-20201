@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     }
     
     if (pid == 0) { /* child process */
-        execvp(argv2[0],argv2);
+        execv("/bin/"+argv2[0],argv2);
         for (int i = 0; i < argc-1; i++){
             printf("%s ",argv2[i]);
         }
