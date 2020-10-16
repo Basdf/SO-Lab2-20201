@@ -12,18 +12,24 @@ int main(int argc, char *argv[]) {
     struct timeval current_time;
     gettimeofday(&current_time, NULL);
     int timeI=current_time.tv_usec;
-    pid = fork();
-    char *argv2[argc-1];
+    char **arg_vector = NULL;
+    arg_vector = (char **)malloc(sizeof(char **) *(argc));
+    if (arg_vector == NULL) {
+        perror("malloc");
+        exit(EXIT_FAILURE);
+    }
     char path[50];
     strcpy(path,"/bin/");
+    pid = fork();
     for (int i = 1; i < argc; i++){
-        argv2[i-1]=argv[i];
+        arg_vector[i-1]=argv[i];
     }
+    arg_vector[argc]=NULL;
     
     if (pid == 0) { /* child process */
-        strcat(path,argv2[0]);
-        argv2[0]=path;
-        execvp(argv2[0],argv2);
+        strcat(path,arg_vector[0]);
+        //arg_vector[0]=path;
+        execvp(arg_vector[0],argv2);
         perror("execvp");
         for (int i = 0; i < argc-1; i++){
             printf("%s ",argv2[i]);
